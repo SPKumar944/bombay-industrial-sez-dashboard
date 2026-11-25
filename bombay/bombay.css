@@ -1,0 +1,32 @@
+/* Bombay industrial dashboard — additions on top of the AGT dashboard stylesheet (agt-dashboard.css). */
+.status-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.status-row button { height: 46px; border: 2px solid transparent; border-radius: 8px; color: #fff; font-size: 10px; font-weight: 700; cursor: pointer; padding: 3px 2px; line-height: 1.25; }
+.status-row button b { display: block; font-size: 14px; font-family: var(--mono); }
+.status-row button.off { opacity: .25; }
+.status-row button.sel { border-color: var(--text); }
+.theme-btn { border: 0; background: var(--surface-2); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--text); }
+.theme-btn svg { width: 17px; height: 17px; }
+.list-row.sel { background: var(--soft); }
+.bar-cols { display: flex; gap: 2px; align-items: flex-end; height: 100%; }
+.tl-bars div[data-key] { cursor: pointer; }
+.tl-bars div.now { outline: 2px solid var(--text); outline-offset: 1px; }
+.tl-marks { justify-content: space-between; gap: 8px; }
+.tl-marks span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.search { width: 100%; border: 1px solid var(--border); border-radius: 980px; padding: 8px 14px; background: var(--surface-2); margin-bottom: 10px; outline: none; }
+.search:focus { border-color: var(--border-strong); background: var(--surface); }
+.tag-s { font-family: var(--mono); font-size: 9.5px; font-weight: 700; border-radius: 4px; padding: 1px 5px; background: var(--soft); color: var(--text-2); }
+.dist-title { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--text-3); font-weight: 700; margin: 12px 2px 6px; text-transform: uppercase; }
+.sez-note { background: var(--surface-2); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+.maplibregl-popup-content { font-family: var(--font); font-size: 12px; border-radius: 10px; }
+#baseSelect, #statusSelect, #areaSelect { cursor: pointer; }
+@media (max-width: 860px) { :root { --timeline-h: 150px; } .tl-index { display: none; } .tl-marks { display: none; } }
+
+/* no footer strip: the map runs to the bottom of the window */
+:root { --timeline-h: 0px; }
+@media (max-width: 860px) { :root { --timeline-h: 0px; } }
+.coords { bottom: 14px; }
+.inspector { bottom: 44px; }
+
+/* left panel header: the dashboard heading is the big line; the area name under it is smaller */
+#leftPanel .panel-head .eyebrow { font-family: var(--font); font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; text-transform: none; color: var(--text); }
+#leftPanel .panel-title { font-size: 12.5px; font-weight: 600; line-height: 1.25; letter-spacing: 0; color: var(--text-2); margin-top: 6px; }

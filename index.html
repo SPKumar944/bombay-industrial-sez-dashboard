@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script>(function(){var t=null;try{t=localStorage.getItem("agt.theme")}catch(e){}if(t!=="light")document.documentElement.dataset.theme="dark"})()</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bombay Industrial and Special Economic Zones · Parks, Plots &amp; SEZs · AGT Intelligence</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <link href="bombay/agt-dashboard.css?v=1" rel="stylesheet" />
+  <link href="bombay/bombay.css?v=4" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+</head>
+<body>
+  <!-- ================= HEADER ================= -->
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 24" aria-hidden="true">
+        <path d="M2 12 L10 4 L18 12 L10 20 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M16 12 L24 4 L32 12 L24 20 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" opacity=".55"/>
+        <circle cx="35" cy="12" r="2.6" fill="currentColor"/>
+      </svg>
+      <div class="brand-text"><b>AGT</b>INTELLIGENCE<span>Bombay Industrial and Special Economic Zones</span></div>
+    </div>
+    <div class="controls">
+      <label class="select-wrap"><span class="select-icon">◆</span><span class="select-label">AREA</span>
+        <select id="areaSelect" style="min-width:200px"></select></label>
+      <label class="select-wrap"><span class="select-icon">▦</span><span class="select-label">PLOTS</span>
+        <select id="statusSelect">
+          <option value="all">All plots</option><option value="allotted">Allotted</option>
+          <option value="vacant">Vacant</option><option value="reserved">Reserved / utilities</option>
+        </select></label>
+      <label class="select-wrap"><span class="select-icon">⌂</span><span class="select-label">MAP</span>
+        <select id="baseSelect"><option value="map">Street map</option><option value="sat">Satellite</option></select></label>
+    </div>
+    <div class="header-right">
+      <div class="badge mono" id="snapshotBadge">IILB · SEZ India · OSM</div>
+      <button class="ghost-btn" id="methodBtn" title="Data sources & method">ⓘ Data &amp; method</button>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch theme" title="Light / dark"></button>
+    </div>
+  </header>
+
+  <main id="app">
+    <div id="map"></div>
+
+    <!-- ================= LEFT: AREA PANEL ================= -->
+    <aside class="panel left-panel" id="leftPanel">
+      <div class="panel-head">
+        <div><div class="eyebrow">Bombay Industrial and Special Economic Zones</div><div class="panel-title" id="areaName">Loading…</div></div>
+        <button class="icon-btn" data-collapse="leftPanel" title="Collapse">‹</button>
+      </div>
+      <div class="panel-body" id="areaPanel"><div class="skeleton">Loading Bombay industrial data…</div></div>
+    </aside>
+    <button class="panel-reopen left" id="leftReopen" title="Show overview">›</button>
+
+    <!-- ================= RIGHT: LAYERS / PARKS / SEZ ================= -->
+    <aside class="panel right-panel" id="rightPanel">
+      <div class="panel-head">
+        <div class="tabs">
+          <button class="tab active" data-tab="layersTab">Data layers <span class="pill" id="activeCount">0</span></button>
+          <button class="tab" data-tab="parksTab">Parks</button>
+          <button class="tab" data-tab="sezTab">SEZs</button>
+        </div>
+        <button class="icon-btn" data-collapse="rightPanel" title="Collapse">›</button>
+      </div>
+      <div class="panel-body">
+        <div class="tab-pane active" id="layersTab"></div>
+        <div class="tab-pane" id="parksTab"></div>
+        <div class="tab-pane" id="sezTab"></div>
+      </div>
+    </aside>
+    <button class="panel-reopen right" id="rightReopen" title="Show layers">‹</button>
+
+    <!-- ================= LEGEND ================= -->
+    <section class="card legend" id="legend">
+      <div class="legend-head">
+        <div class="eyebrow-row"><span class="dot-icon">≋</span> PLOT ALLOTMENT STATUS</div>
+        <span class="chip mono" id="legendCount">—</span>
+      </div>
+      <div class="legend-sub">Click a status to filter · <span id="statusLabel">all plots</span></div>
+      <div class="status-row" id="statusRow"></div>
+      <div class="legend-hex" id="legendExtra"></div>
+    </section>
+
+    <!-- ================= INSPECTOR ================= -->
+    <section class="card inspector hidden" id="inspector">
+      <button class="icon-btn close" id="inspectorClose" title="Close">✕</button>
+      <div id="inspectorBody"></div>
+    </section>
+
+    <div class="coords mono" id="coords">LAT —  |  LON —  |  ZOOM —</div>
+  </main>
+
+  <!-- ================= METHOD MODAL ================= -->
+  <div class="modal hidden" id="methodModal">
+    <div class="modal-card">
+      <button class="icon-btn close" data-close="methodModal">✕</button>
+      <div id="methodBody"></div>
+    </div>
+  </div>
+
+  <div class="loader" id="loader"><div class="spinner"></div><div id="loaderText">Loading Bombay industrial layers…</div></div>
+  <script src="bombay/icons.js?v=1"></script>
+  <script src="bombay/app.js?v=5"></script>
+</body>
+</html>
